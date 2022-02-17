@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"strings"
 )
 
@@ -35,4 +36,10 @@ func (d deck) print() {
 
 func (d deck) toString() string {
 	return strings.Join([]string(d), "|")
+}
+
+func (d deck) saveToFile(filename string) error {
+	data := []byte(d.toString())
+	const anyoneCanReadOrWrite = 0666
+	return ioutil.WriteFile(filename, data, anyoneCanReadOrWrite)
 }

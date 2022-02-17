@@ -9,15 +9,19 @@ type deck []string
 func newDeck() deck {
 	result := deck{}
 
-	suits  := []string { "Spades", "Diamonds", "Hearts", "Clubs" }
-	values := []string { "Ace", "Two", "Three", "Four" }
+	suits := []string{"Spades", "Diamonds", "Hearts", "Clubs"}
+	values := []string{"Ace", "Two", "Three", "Four"}
 
 	for _, suit := range suits {
 		for _, value := range values {
-			result = append(result, value + " of " + suit)
+			result = append(result, value+" of "+suit)
 		}
 	}
 	return result
+}
+
+func deal(d deck, handSize int) (deck, deck) {
+	return d[:handSize], d[handSize:]
 }
 
 func (d deck) print() {
